@@ -1,0 +1,11 @@
+@ExampleDDD.Api_HostAddress = https://localhost:44304
+
+POST {{ExampleDDD.Api_HostAddress}}/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "TestName",
+    "lastName": "TestLastName",
+    "email": "Test",
+    "password": "TestPassword123"
+}
