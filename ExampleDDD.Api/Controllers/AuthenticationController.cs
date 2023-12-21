@@ -1,8 +1,10 @@
 ﻿using ErrorOr;
-using ExampleDDD.Application.Services.Authentication.Commands;
-using ExampleDDD.Application.Services.Authentication.Common;
-using ExampleDDD.Application.Services.Authentication.Queries;
+using ExampleDDD.Application.Authentication.Commands.Register;
+using ExampleDDD.Application.Authentication.Common;
+using ExampleDDD.Application.Authentication.Queries.Login;
 using ExampleDDD.Contracts.Authentication;
+using MapsterMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExampleDDD.Api.Controllers
@@ -10,23 +12,21 @@ namespace ExampleDDD.Api.Controllers
     [Route("auth")]
     public class AuthenticationController : ApiController
     {
-        private readonly IAuthenticationCommandService _authenticationCommandService;
-        private readonly IAuthenticationQueryService _authenticationQueryService;
+        private readonly ISender _mediator;
+        private readonly IMapper _mapper;
 
-        public AuthenticationController(IAuthenticationCommandService authenticationCommandService, IAuthenticationQueryService authenticationQueryService)
+        public AuthenticationController(ISender mediator, IMapper mapper)
         {
-            _authenticationCommandService = authenticationCommandService;
-            _authenticationQueryService = authenticationQueryService;
+            _mediator = mediator;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            ErrorOr<AuthenticationResult> registerResult = _authenticationCommandService.Register(
-                request.FirstName, 
-                request.LastName, 
-                request.Email, 
-                request.Password);
+            var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password);
+            //var command = _mapper.Map<RegisterCommand>(request);
+            ErrorOr <AuthenticationResult> registerResult = await _mediator.Send(command);
                         
             return registerResult.Match(
                 authResult => Ok(MapAuthResult(authResult)),
@@ -46,9 +46,11 @@ namespace ExampleDDD.Api.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            var registerResult = _authenticationQueryService.Login(request.Email, request.Password);
+            var query = new LoginQuery(request.Email, request.Password);
+            //var query = _mapper.Map<LoginQuery>(request);
+            var registerResult = await _mediator.Send(query);
 
             return registerResult.Match(
                 authResult => Ok(MapAuthResult(authResult)),

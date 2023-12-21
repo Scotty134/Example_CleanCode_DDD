@@ -1,6 +1,6 @@
 ﻿using ExampleDDD.Domain.Entities;
 
-namespace ExampleDDD.Application.Services.Authentication.Common
+namespace ExampleDDD.Application.Authentication.Common
 {
     public record AuthenticationResult(
         User User,

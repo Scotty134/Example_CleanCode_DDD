@@ -1,33 +1,34 @@
 ﻿using ErrorOr;
 using ExampleDDD.Application.Common.Interfaces.Authentication;
 using ExampleDDD.Application.Common.Interfaces.Persistence;
-using ExampleDDD.Application.Services.Authentication.Common;
-using ExampleDDD.Domain.Common.Errors;
 using ExampleDDD.Domain.Entities;
+using ExampleDDD.Domain.Common.Errors;
+using MediatR;
+using ExampleDDD.Application.Authentication.Common;
 
-namespace ExampleDDD.Application.Services.Authentication.Queries
+namespace ExampleDDD.Application.Authentication.Queries.Login
 {
-    public class AuthenticationQueryService : IAuthenticationQueryService
+    public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IUserRepository _userRepository;
 
-        public AuthenticationQueryService(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
+        public LoginQueryHandler(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
             _userRepository = userRepository;
         }
 
-        public ErrorOr<AuthenticationResult> Login(string email, string password)
+        public async Task<ErrorOr<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
         {
             // 1. Validate the user exists
-            if (_userRepository.GetUserByEmail(email) is not User user)
+            if (_userRepository.GetUserByEmail(query.Email) is not User user)
             {
                 return Errors.Authentication.InvalidCredentials;
             }
 
             // 2. Validate the password is correct
-            if (user.Password != password)
+            if (user.Password != query.Password)
             {
                 return Errors.Authentication.InvalidCredentials;
             }
