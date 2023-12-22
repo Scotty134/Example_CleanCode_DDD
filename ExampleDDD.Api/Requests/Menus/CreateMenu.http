@@ -1,0 +1,24 @@
+@ExampleDDD.Api_HostAddress = https://localhost:44304
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZjA0YTk4My0xMzYyLTQ5ZmQtYmUwYi02MGY4M2Q0Y2Y1MWMiLCJqdGkiOiIxMjZkMDE5OC03NGE3LTQ3NGEtODg3MS03OTQyMzFhMzBhM2EiLCJnaXZlbl9uYW1lIjoiVGVzdE5hbWUiLCJmYW1pbHlfbmFtZSI6IlRlc3RMYXN0TmFtZSIsImV4cCI6MTcwMzI4NjA3OSwiaXNzIjoiRXhhbXBsZURERCIsImF1ZCI6IkV4YW1wbGVEREQifQ.Faf0ENBCEB0X2SjSdJV4POX_gGDsLeezSoQavdDcCYM
+@hostId=asdf
+
+POST {{ExampleDDD.Api_HostAddress}}/hosts/{{hostId}}/menus
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Yuumy Menu",
+    "description": "A menu description",
+    "sections": [
+        {
+            "name": "Appetizers",
+            "description": "Starters",
+            "items": [
+                {
+                    "name": "Fried Pickles",
+                    "description": "pickles pickles"
+                }
+            ]
+        }
+    ]
+}

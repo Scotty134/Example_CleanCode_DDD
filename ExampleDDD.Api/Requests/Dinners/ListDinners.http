@@ -1,0 +1,4 @@
+@ExampleDDD.Api_HostAddress = https://localhost:44304
+
+POST {{ExampleDDD.Api_HostAddress}}/dinners
+Authorization: Bearer 
