@@ -1,7 +1,4 @@
-﻿using ErrorOr;
-using ExampleDDD.Application.Authentication.Commands.Register;
-using ExampleDDD.Application.Authentication.Common;
-using ExampleDDD.Application.Common.Behaviors;
+﻿using ExampleDDD.Application.Common.Behaviors;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

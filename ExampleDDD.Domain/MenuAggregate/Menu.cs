@@ -1,4 +1,5 @@
 ﻿using ExampleDDD.Domain.Common.Models;
+using ExampleDDD.Domain.Common.ValueObjects;
 using ExampleDDD.Domain.DinnerAggregate.ValueObjects;
 using ExampleDDD.Domain.HostAggregate.ValueObjects;
 using ExampleDDD.Domain.MenuAggregate.Entities;
@@ -14,7 +15,7 @@ namespace ExampleDDD.Domain.MenuAggregate
         private readonly List<MenuReviewId> _menuReviewIds = new();
         public string Name { get; }
         public string Description { get; }
-        public float AverageRating { get; }
+        public AverageRating AverageRating { get; }
         public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
         public IReadOnlyList<DinnerId> DinnerIds => _dinnerIds.AsReadOnly();
         public IReadOnlyList<MenuReviewId> MenuReviewIds => _menuReviewIds.AsReadOnly();
@@ -29,7 +30,8 @@ namespace ExampleDDD.Domain.MenuAggregate
             string description,
             HostId hostId,
             DateTime createdDateTime,
-            DateTime updatedDateTime)
+            DateTime updatedDateTime,
+            List<MenuSection>? sections)
             : base(menuId)
         {
             Name = name;
@@ -37,9 +39,10 @@ namespace ExampleDDD.Domain.MenuAggregate
             HostId = hostId;
             CreatedDateTime = createdDateTime;
             UpdatedDateTime = updatedDateTime;
+            _sections = sections;
         }
 
-        public static Menu Create(string name, string description, HostId hostId)
+        public static Menu Create(string name, string description, HostId hostId, List<MenuSection>? sections)
         {
             return new(
                 MenuId.CreateUnique(),
@@ -47,8 +50,8 @@ namespace ExampleDDD.Domain.MenuAggregate
                 description,
                 hostId,
                 DateTime.UtcNow,
-                DateTime.UtcNow
-                );
+                DateTime.UtcNow,
+                sections);
         }
     }
 }

@@ -1,18 +1,19 @@
-﻿namespace ExampleDDD.Contracts.Menus
+﻿
+namespace ExampleDDD.Contracts.Menus
 {
     public record CreateMenuRequest(
         string Name,
         string Description,
-        List<MenuSection> Sections
+        List<MenuSectionRequest> Sections
     );
 
-    public record MenuSection(
+    public record MenuSectionRequest(
         string Name,
         string Description,
-        List<MenuItem> Items
+        List<MenuItemRequest> Items
     );
 
-    public record MenuItem(
+    public record MenuItemRequest(
         string Name,
         string Description
     );

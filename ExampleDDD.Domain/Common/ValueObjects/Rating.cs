@@ -4,16 +4,16 @@ namespace ExampleDDD.Domain.Common.ValueObjects
 {
     public sealed class Rating : ValueObject
     {
-        public Guid Value { get; }
+        public int Value { get; }
 
-        private Rating(Guid value)
+        private Rating(int value)
         {
             Value = value;
         }
 
-        public static Rating CreateUnique()
+        public static Rating CreateNew(int rating = 0)
         {
-            return new(Guid.NewGuid());
+            return new(rating);
         }
 
         public override IEnumerable<object> GetEqualityComponents()
