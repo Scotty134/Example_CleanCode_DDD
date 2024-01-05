@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using ExampleDDD.Application.Common.Interfaces.Persistence;
+using ExampleDDD.Domain.Common.ValueObjects;
 using ExampleDDD.Domain.HostAggregate.ValueObjects;
 using ExampleDDD.Domain.MenuAggregate;
 using ExampleDDD.Domain.MenuAggregate.Entities;
@@ -21,9 +22,10 @@ namespace ExampleDDD.Application.Menus.Commands.CreateMenu
             await Task.CompletedTask;
             // Create Menu
             var menu = Menu.Create(
-                hostId: HostId.Create(request.HostId),
+                hostId: HostId.Create(Guid.Parse(request.HostId)),
                 name: request.Name,
                 description: request.Description,
+                rating: AverageRating.CreateNew(),
                 sections: request.Sections.ConvertAll(section => MenuSection.Create(
                     section.Name,
                     section.Description,

@@ -1,7 +1,7 @@
 ﻿using ExampleDDD.Application.Common.Interfaces.Persistence;
 using ExampleDDD.Domain.Entities;
 
-namespace ExampleDDD.Infrastructure.Persistence
+namespace ExampleDDD.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {

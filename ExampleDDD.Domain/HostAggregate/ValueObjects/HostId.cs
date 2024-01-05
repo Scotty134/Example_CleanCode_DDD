@@ -4,14 +4,14 @@ namespace ExampleDDD.Domain.HostAggregate.ValueObjects
 {
     public sealed class HostId : ValueObject
     {
-        public string Value { get; }
+        public Guid Value { get; }
 
-        private HostId(string value)
+        private HostId(Guid value)
         {
             Value = value;
         }
 
-        public static HostId Create(string value = "")
+        public static HostId Create(Guid value)
         {
             return new(value);
         }

@@ -3,8 +3,10 @@ using ExampleDDD.Application.Common.Interfaces.Persistence;
 using ExampleDDD.Application.Common.Interfaces.Services;
 using ExampleDDD.Infrastructure.Authentication;
 using ExampleDDD.Infrastructure.Persistence;
+using ExampleDDD.Infrastructure.Persistence.Repositories;
 using ExampleDDD.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -29,6 +31,7 @@ namespace ExampleDDD.Infrastructure
 
         public static IServiceCollection AddPersistance(this IServiceCollection services)
         {
+            services.AddDbContext<BuberDbContext>(options => options.UseSqlServer());
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 

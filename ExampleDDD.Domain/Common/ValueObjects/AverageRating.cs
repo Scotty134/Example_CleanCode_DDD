@@ -13,6 +13,13 @@ namespace ExampleDDD.Domain.Common.ValueObjects
             NumRating = numRating;
         }
 
+#pragma warning disable CS8618
+        public AverageRating()
+        {
+            
+        }
+#pragma warning disable CS8618
+
         public static AverageRating CreateNew (double rating = 0, int numRating = 0)
         {
             return new AverageRating(rating, numRating);

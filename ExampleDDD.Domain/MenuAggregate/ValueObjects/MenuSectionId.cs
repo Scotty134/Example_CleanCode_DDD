@@ -16,6 +16,11 @@ namespace ExampleDDD.Domain.MenuAggregate.ValueObjects
             return new(Guid.NewGuid());
         }
 
+        public static MenuSectionId Create(Guid id)
+        {
+            return new(id);
+        }
+
         public override IEnumerable<object> GetEqualityComponents()
         {
             yield return Value;
