@@ -59,11 +59,10 @@ namespace ExampleDDD.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<int>("NumRating")
-                                .HasColumnType("NumRating");
+                                .HasColumnType("int");
 
                             b1.Property<double>("Value")
-                                .HasColumnType("float")
-                                .HasColumnName("AverageRating");
+                                .HasColumnType("float");
 
                             b1.HasKey("MenuId");
 

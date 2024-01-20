@@ -126,13 +126,7 @@ namespace ExampleDDD.Infrastructure.Persistence.Configurations
             builder.Property(m => m.Description)
                 .HasMaxLength(100);
 
-            builder.OwnsOne(m => m.AverageRating, ab => {
-                ab.Property(a => a.Value)
-                .HasColumnName("AverageRating");
-
-                ab.Property(a => a.NumRating)
-                .HasColumnType("NumRating");
-            });
+            builder.OwnsOne(m => m.AverageRating);
 
             builder.Property(m => m.HostId)
                 .HasConversion(

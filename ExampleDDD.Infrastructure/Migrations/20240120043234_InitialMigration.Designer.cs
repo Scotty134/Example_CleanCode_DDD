@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExampleDDD.Infrastructure.Migrations
 {
     [DbContext(typeof(BuberDbContext))]
-    [Migration("20240105221051_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240120043234_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -62,11 +62,10 @@ namespace ExampleDDD.Infrastructure.Migrations
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<int>("NumRating")
-                                .HasColumnType("NumRating");
+                                .HasColumnType("int");
 
                             b1.Property<double>("Value")
-                                .HasColumnType("float")
-                                .HasColumnName("AverageRating");
+                                .HasColumnType("float");
 
                             b1.HasKey("MenuId");
 

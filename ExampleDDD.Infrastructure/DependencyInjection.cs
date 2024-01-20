@@ -31,7 +31,8 @@ namespace ExampleDDD.Infrastructure
 
         public static IServiceCollection AddPersistance(this IServiceCollection services)
         {
-            services.AddDbContext<BuberDbContext>(options => options.UseSqlServer());
+            services.AddDbContext<BuberDbContext>(options => 
+                options.UseSqlServer("Server=localhost;Database=BuberDb;User Id=sa;Password=exampleDDD#123;TrustServerCertificate=true"));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 

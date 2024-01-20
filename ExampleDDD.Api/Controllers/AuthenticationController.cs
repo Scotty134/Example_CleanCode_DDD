@@ -5,6 +5,7 @@ using ExampleDDD.Application.Authentication.Queries.Login;
 using ExampleDDD.Contracts.Authentication;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExampleDDD.Api.Controllers
@@ -21,6 +22,7 @@ namespace ExampleDDD.Api.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
