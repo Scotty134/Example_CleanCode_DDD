@@ -3,6 +3,7 @@ using ExampleDDD.Domain.Common.ValueObjects;
 using ExampleDDD.Domain.DinnerAggregate.ValueObjects;
 using ExampleDDD.Domain.HostAggregate.ValueObjects;
 using ExampleDDD.Domain.MenuAggregate.Entities;
+using ExampleDDD.Domain.MenuAggregate.Events;
 using ExampleDDD.Domain.MenuAggregate.ValueObjects;
 using ExampleDDD.Domain.MenuReviewAggregate.ValueObjects;
 
@@ -52,7 +53,8 @@ namespace ExampleDDD.Domain.MenuAggregate
 
         public static Menu Create(string name, string description, HostId hostId, AverageRating rating, List<MenuSection>? sections)
         {
-            return new(
+
+            var menu = new Menu(
                 MenuId.CreateUnique(),
                 name,
                 description,
@@ -61,6 +63,10 @@ namespace ExampleDDD.Domain.MenuAggregate
                 DateTime.UtcNow,
                 DateTime.UtcNow,
                 sections?? new());
+
+            menu.AddDomainEvent(new MenuCreated(menu));
+
+            return menu;
         }
     }
 }

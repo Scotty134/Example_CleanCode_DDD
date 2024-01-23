@@ -3,8 +3,10 @@ using ExampleDDD.Application.Common.Interfaces.Persistence;
 using ExampleDDD.Application.Common.Interfaces.Services;
 using ExampleDDD.Infrastructure.Authentication;
 using ExampleDDD.Infrastructure.Persistence;
+using ExampleDDD.Infrastructure.Persistence.Interceptors;
 using ExampleDDD.Infrastructure.Persistence.Repositories;
 using ExampleDDD.Infrastructure.Services;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +35,9 @@ namespace ExampleDDD.Infrastructure
         {
             services.AddDbContext<BuberDbContext>(options => 
                 options.UseSqlServer("Server=localhost;Database=BuberDb;User Id=sa;Password=exampleDDD#123;TrustServerCertificate=true"));
+
+
+            services.AddScoped<PublishDomainEventsInterceptor>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 
