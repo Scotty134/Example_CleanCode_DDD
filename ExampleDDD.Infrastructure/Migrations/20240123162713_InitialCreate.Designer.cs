@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExampleDDD.Infrastructure.Migrations
 {
     [DbContext(typeof(BuberDbContext))]
-    [Migration("20240120043234_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20240123162713_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

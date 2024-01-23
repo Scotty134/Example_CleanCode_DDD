@@ -114,6 +114,7 @@ namespace ExampleDDD.Infrastructure.Persistence.Configurations
             builder.ToTable("Menus");
 
             builder.HasKey(m => m.Id);
+
             builder.Property(m => m.Id)
                 .ValueGeneratedNever()
                 .HasConversion(
