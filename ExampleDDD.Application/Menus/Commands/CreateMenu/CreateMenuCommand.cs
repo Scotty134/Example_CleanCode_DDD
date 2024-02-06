@@ -8,16 +8,16 @@ namespace ExampleDDD.Application.Menus.Commands.CreateMenu
         string Name,
         string Description,
         string HostId,
-        List<MenuSectionCommand> Sections
+        List<CreateMenuSectionCommand> Sections
     ) : IRequest<ErrorOr<Menu>>;
 
-    public record MenuSectionCommand(
+    public record CreateMenuSectionCommand(
         string Name,
         string Description,
-        List<MenuItemCommand> Items
+        List<CreateMenuItemCommand> Items
     );
 
-    public record MenuItemCommand(
+    public record CreateMenuItemCommand(
         string Name,
         string Description
     );
