@@ -1,6 +1,5 @@
 ﻿using ExampleDDD.Application.Menus.Commands.CreateMenu;
-using ExampleDDD.Application.UnitTests.Menus.Commands.TestUtils.Constants;
-using System.Linq;
+using ExampleDDD.Application.UnitTests.Menus.TestUtils.Constants;
 
 namespace ExampleDDD.Application.UnitTests.Menus.Commands.TestUtils
 {

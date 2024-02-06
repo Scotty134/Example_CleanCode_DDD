@@ -3,7 +3,7 @@ using ExampleDDD.Domain.MenuAggregate;
 using ExampleDDD.Domain.MenuAggregate.Entities;
 using FluentAssertions;
 
-namespace ExampleDDD.Application.UnitTests.Menus.Commands.TestUtils.Menus.Extensions
+namespace ExampleDDD.Application.UnitTests.Menus.TestUtils.Menus.Extensions
 {
     public static partial class MenuExtensions
     {

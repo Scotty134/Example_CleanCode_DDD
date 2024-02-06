@@ -1,7 +1,7 @@
 ﻿using ExampleDDD.Application.Common.Interfaces.Persistence;
 using ExampleDDD.Application.Menus.Commands.CreateMenu;
 using ExampleDDD.Application.UnitTests.Menus.Commands.TestUtils;
-using ExampleDDD.Application.UnitTests.Menus.Commands.TestUtils.Menus.Extensions;
+using ExampleDDD.Application.UnitTests.Menus.TestUtils.Menus.Extensions;
 using FluentAssertions;
 using Moq;
 using Xunit;

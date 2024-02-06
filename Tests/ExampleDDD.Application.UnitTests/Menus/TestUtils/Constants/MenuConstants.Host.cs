@@ -1,6 +1,6 @@
 ﻿using ExampleDDD.Domain.HostAggregate.ValueObjects;
 
-namespace ExampleDDD.Application.UnitTests.Menus.Commands.TestUtils.Constants
+namespace ExampleDDD.Application.UnitTests.Menus.TestUtils.Constants
 {
     public static partial class MenuConstants
     {
